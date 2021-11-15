@@ -1,0 +1,36 @@
+[
+    {
+        "id": "f-exec", "title": "Executivo", "types": [
+            {"id": "f-exec-federal", "title": "Federal"},
+            {"id": "f-exec-estadual", "title": "Estadual"},
+            {"id": "f-exec-municipal", "title": "Municipal"}
+        ]
+    },
+    {
+        "id": "f-legislativo", "title": "Legislativo", "types": [
+            {"id": "f-legislativo-federal", "title": "Federal"},
+            {"id": "f-legislativo-estadual", "title": "Estadual"}
+        ]
+    },
+    {
+        "id": "f-judiciario", "title": "Judiciário", "types": [
+            {"id": "f-judiciario-federal", "title": "Federal"},
+            {"id": "f-judiciario-estadual", "title": "Estadual"}
+        ]
+    },
+    {
+        "id": "f-ministerios-publicos", "title": "Ministérios Públicos"
+    },
+    {
+        "id": "f-tribunal-contas", "title": "Tribunais de Contas"
+    },
+    {
+        "id": "f-universidades-publicas", "title": "Universidades Públicas", "types": [
+            {"id": "f-universidade-federal", "title": "Federal"},
+            {"id": "f-universidade-estadual", "title": "Estadual"}
+        ]
+    },
+    {
+        "id": "f-gov-techs", "title": "Gov Techs"
+    }
+]

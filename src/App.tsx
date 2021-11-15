@@ -1,9 +1,13 @@
-import React from 'react';
+import { ThemeProvider } from '@/theme/ThemeProvider';
+
+import {AsideMenu} from "@/components/AsideMenu";
+
 function App() {
-  return (
-    <div className="App">
-        <h1>APP</h1>
-    </div>
+  return (<>
+    <ThemeProvider>
+      <AsideMenu />
+    </ThemeProvider>
+  </>
   );
 }
 

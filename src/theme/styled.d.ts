@@ -20,6 +20,10 @@ type Colors = {
     onBackground: string,
     onSurface: string,
     onError: string,
+    facebook: string,
+    twiter: string,
+    instagram: string,
+    youtube: string,
 }
 
 declare module 'styled-components' {
