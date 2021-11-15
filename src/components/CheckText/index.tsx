@@ -33,7 +33,7 @@ export const CheckText = ({option, ...rest}:CheckTextProps) => {
             {option.types && (
                 <Types isActive={isActive}>
                     {option.types.map(type => (
-                        <CheckboxContainer htmlFor={type.id}>
+                        <CheckboxContainer key={type.id} htmlFor={type.id}>
                             <input type="checkbox" id={type.id} {...rest} />
                             <span>{type.title}</span>
                             <FontAwesomeIcon className="check-icon" color={theme.colors.primary} icon={faCheck} />

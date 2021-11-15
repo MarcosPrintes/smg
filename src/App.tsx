@@ -1,11 +1,11 @@
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
-import {AsideMenu} from "@/components/AsideMenu";
+import {App as AppContent} from '@/components/App';
 
 function App() {
   return (<>
     <ThemeProvider>
-      <AsideMenu />
+      <AppContent />
     </ThemeProvider>
   </>
   );
