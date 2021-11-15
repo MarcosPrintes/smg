@@ -5,15 +5,14 @@ import {Button} from '@/components/Button';
 
 import {Container, SearchContainer, ContainerUserAction, UserName} from './styles';
 import { Search } from '../Search';
+import { OrderButtons } from '../OrderButtons';
 
 export const Header = () => {
     return (
         <Container>
             <SearchContainer>
                 <Search />
-                <div>
-                    <span> Ordenar por</span>
-                </div>
+                <OrderButtons />
             </SearchContainer>
             <ContainerUserAction>
                     <UserName>
