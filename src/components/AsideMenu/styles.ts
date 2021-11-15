@@ -7,6 +7,7 @@ export const Container =  styled.div`
     background: ${props => props.theme.colors.background};
     height: 100vh;
     padding: 15px;
+    overflow-y: scroll;
 
     .filters {
         > span {

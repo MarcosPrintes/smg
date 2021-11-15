@@ -9,7 +9,7 @@ import { OrderButtons } from '../OrderButtons';
 
 export const Header = () => {
     return (
-        <Container>
+        <Container className="header">
             <SearchContainer>
                 <Search />
                 <OrderButtons />
