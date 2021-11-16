@@ -13,7 +13,7 @@ export const App = () => {
       <AsideMenu onCloseMenu={() => setIsMenuMobileActive(false)} menuMobileActive={isMenuMobileActive} />
       <div style={{flex: 1}}>
         <Header onMenuMobileClick={() => setIsMenuMobileActive(true) } />
-        <Feed />
+        <Feed onInfiteScroll={() => console.log("request API") } />
       </div>
   </Container>
   );

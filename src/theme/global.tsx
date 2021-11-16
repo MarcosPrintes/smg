@@ -38,4 +38,8 @@ export const GlobalStyles = createGlobalStyle`
     img {
         max-width: 100%;
     }
+
+    input {
+        outline: none;
+    }
 `;
