@@ -24,21 +24,15 @@ import {
     Thumb,
     Text
 } from './styles';
+interface CradProps {
+    text: string;
+}
 
-const text = 'Um traficante condenado em Santa Catarina e foragido desde 2013 foi preso no fim de semana na #Paraíba. Mesmo foragido, ele foi denunciado pelo MPSC e condenado pela Justiça a 11 anos e quatro meses de prisão.Na época, a operação Rota do Contestado, realizada pelo GAECO, desarticulou uma organização criminosa envolvida em tráfico'
-
-const social = {
-    "facebook": faFacebook,
-    "instagram": faInstagram,
-    "twitter": faTwitter,
-    "youtube": faYoutube,
-};
-
-export const Card = () => {
+export const Card = ({text}:CradProps) => {
     const theme = useTheme();
 
     return (
-        <Container>
+        <Container className="post">
             <Thumb>
                 <FontAwesomeIcon
                     size="2x"

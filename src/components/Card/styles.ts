@@ -3,8 +3,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     background: ${props => props.theme.colors.onPrimary};
-    max-height: 600px;
+    height: max-content;
     width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
     border-radius: .5rem;
 `;
 
@@ -89,6 +91,7 @@ export const ContentText = styled.div`
 
 export const Text = styled.p`
     color: ${props => props.theme.colors.onBackground};
+    line-break: anywhere;
 `;
 
 export const Rates = styled.div`

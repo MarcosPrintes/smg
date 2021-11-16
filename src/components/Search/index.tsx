@@ -21,7 +21,7 @@ export const Search = () => {
     }
 
     return (
-        <Container isFocused={isFocused}>
+        <Container className="search" isFocused={isFocused}>
             <input
                 onBlur={(e) => onHandleBlur(e.target.value)}
                 onFocus={(e) => handleOnFocus(e.target.value) }

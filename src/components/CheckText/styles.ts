@@ -13,7 +13,7 @@ export const CheckboxContainer = styled.label`
 
     span {
         color: ${props => props.theme.colors.onBackground};
-        font-size: 1.2rem;
+        font-size: 1rem;
         pointer-events: none;
         margin-right: .5rem;
     }

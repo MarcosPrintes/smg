@@ -1,15 +1,21 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-
 import {Button} from '@/components/Button';
 
-import {Container, SearchContainer, ContainerUserAction, UserName} from './styles';
-import { Search } from '../Search';
-import { OrderButtons } from '../OrderButtons';
+import {Container, SearchContainer, ContainerUserAction, UserName, MobileButton} from './styles';
+import { Search } from '@/components/Search';
+import { OrderButtons } from '@/components/OrderButtons';
 
-export const Header = () => {
+import menuIcon from '@/assets/images/icons/menu_icon.svg';
+interface HeaderProps {
+    onMenuMobileClick: () => void;
+}
+
+export const Header = ({onMenuMobileClick}:HeaderProps) => {
+
     return (
         <Container className="header">
+            <MobileButton onClick={onMenuMobileClick}>
+                <img src={menuIcon} alt="Menu mobile" />
+            </MobileButton>
             <SearchContainer>
                 <Search />
                 <OrderButtons />
@@ -20,7 +26,6 @@ export const Header = () => {
                     </UserName>
                     <Button title="Sair" />
                 </ContainerUserAction>
-
         </Container>
     )
 }

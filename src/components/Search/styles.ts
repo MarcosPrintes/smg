@@ -11,7 +11,10 @@ export const Container = styled.div<ContainerProps>`
     padding: .1rem 1.1rem;
     border-radius: 1rem;
     transition: all .3s ease;
-    width: ${props => props.isFocused ? '300px': '260px'} ;
+    @media only screen and (min-width: 1025px) {
+        width: ${props => props.isFocused ? '300px': '260px'} ;
+    }
+
     margin-right: 1rem;
 
     input {

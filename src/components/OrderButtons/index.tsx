@@ -27,11 +27,11 @@ export const OrderButtons = () => {
     }
 
     return (
-        <Container>
+        <Container className="order-buttons">
             <span> Ordenar por</span>
-            <div>
+            <div className="order-buttons__list">
                 {orderList.map(({active, id, title}) => (
-                    <OrderButton onClick={() => handleOnClickButton(id)} key={id} className={active ? 'is-active' : ''}>
+                    <OrderButton  onClick={() => handleOnClickButton(id)} key={id} className={`${active ? 'is-active' : ''}  order-button`}>
                         {title}
                         {active && (
                             <FontAwesomeIcon

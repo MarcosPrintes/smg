@@ -2,17 +2,29 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     flex: 1;
-    .header {
-        height: 9vh;
-    }
+    height: 100vh;
 `;
 
 export const FeedContent = styled.div`
     background: ${props => props.theme.colors.background};
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    height: 91vh;
+    height: 100vh;
     overflow-y: scroll;
-    padding: 1rem;
+    padding: 2rem;
+    padding-bottom: 30px;
+
+    .my-masonry-grid {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: auto;
+    }
+    .my-masonry-grid_column {
+        background-clip: padding-box;
+        margin: 0 15px;
+    }
+
+    .my-masonry-grid_column .post {
+        margin-bottom: 30px;
+    }
 `;
+
