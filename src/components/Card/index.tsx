@@ -2,9 +2,6 @@ import {useTheme} from 'styled-components';
 
 import {
     faFacebook,
-    faInstagram,
-    faTwitter,
-    faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 
 import {

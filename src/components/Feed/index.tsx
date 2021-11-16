@@ -23,11 +23,11 @@ export const Feed = ({onInfiteScroll}:FeedProps) => {
     const feedref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-
+        const feed = feedref.current;
         function handleScrool(event: Event) {
-            if(feedref.current){
-                const scrollHeightMinusScrollTop = feedref.current.scrollHeight - feedref.current.scrollTop;
-                const feedHeight = feedref.current.clientHeight;
+            if(feed){
+                const scrollHeightMinusScrollTop = feed.scrollHeight - feed.scrollTop;
+                const feedHeight = feed.clientHeight;
 
                 if(feedHeight === scrollHeightMinusScrollTop) {
                     // request infinite scroll
@@ -37,12 +37,12 @@ export const Feed = ({onInfiteScroll}:FeedProps) => {
 
         }
 
-        feedref.current?.addEventListener("scroll", handleScrool);
+        feed?.addEventListener("scroll", handleScrool);
 
         return () => {
-            feedref.current?.removeEventListener("scroll", handleScrool);
+            feed?.removeEventListener("scroll", handleScrool);
         }
-    }, [])
+    }, [onInfiteScroll])
 
     return (
         <Container>

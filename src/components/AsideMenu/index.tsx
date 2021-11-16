@@ -6,8 +6,6 @@ import {
     faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 
-import {faDoorClosed} from '@fortawesome/free-solid-svg-icons';
-
 import { Input } from '@/components/Input';
 import { CheckIcon } from '@/components/CheckIcon';
 import { CheckText } from '@/components/CheckText';
@@ -27,7 +25,6 @@ import {
 
 import asideMenuOptions from '../../constants/asideMenuOptions.json';
 
-import {ReactComponent as CloseMenuIcon} from '@/assets/images/icons/close_icon.svg';
 interface AsideMenuProps {
     menuMobileActive: boolean;
     onCloseMenu: () => void;
