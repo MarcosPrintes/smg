@@ -1,7 +1,7 @@
 import { LoginResponse, User } from "@/store/ducks/user/types";
 import axios from "axios";
 
-const API = "http://api.hom.socialmediagov.com.br";
+const API = "http://api.hom.socialmediagov.com.br"; 
 
 export const api = axios.create({
   baseURL: API,
