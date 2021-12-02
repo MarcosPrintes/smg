@@ -1,7 +1,7 @@
 {
     "headers": [
       {
-        "source": "/api/http://api.hom.socialmediagov.com.br",
+        "source": "/api/(http://api.hom.socialmediagov.com.br)",
         "headers": [
           { "key": "Access-Control-Allow-Credentials", "value": "true" },
           { "key": "Access-Control-Allow-Origin", "value": "*" },
