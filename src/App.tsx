@@ -1,13 +1,14 @@
-import { ThemeProvider } from '@/theme/ThemeProvider';
+import { ThemeProvider } from "@/theme/ThemeProvider";
 
-import {App as AppContent} from '@/components/App';
+import { AppRoutes } from "@/routes";
 
 function App() {
-  return (<>
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
-  </>
+  return (
+    <>
+      <ThemeProvider>
+        <AppRoutes />
+      </ThemeProvider>
+    </>
   );
 }
 

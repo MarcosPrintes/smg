@@ -1,31 +1,43 @@
-import {Button} from '@/components/Button';
+import { useDispatch } from "react-redux";
 
-import {Container, SearchContainer, ContainerUserAction, UserName, MobileButton} from './styles';
-import { Search } from '@/components/Search';
-import { OrderButtons } from '@/components/OrderButtons';
+import { actionLogout } from "@/store/ducks/user/actions";
 
-import menuIcon from '@/assets/images/icons/menu_icon.svg';
+import { Button } from "@/components/Button";
+
+import {
+  Container,
+  SearchContainer,
+  ContainerUserAction,
+  UserName,
+  MobileButton,
+} from "./styles";
+import { Search } from "@/components/Search";
+import { OrderButtons } from "@/components/OrderButtons";
+
+import menuIcon from "@/assets/images/icons/menu_icon.svg";
 interface HeaderProps {
-    onMenuMobileClick: () => void;
+  onMenuMobileClick: () => void;
 }
 
-export const Header = ({onMenuMobileClick}:HeaderProps) => {
+export const Header = ({ onMenuMobileClick }: HeaderProps) => {
+  const dispatch = useDispatch();
 
-    return (
-        <Container className="header">
-            <MobileButton onClick={onMenuMobileClick}>
-                <img src={menuIcon} alt="Menu mobile" />
-            </MobileButton>
-            <SearchContainer>
-                <Search />
-                <OrderButtons />
-            </SearchContainer>
-            <ContainerUserAction>
-                    <UserName>
-                        Marcos
-                    </UserName>
-                    <Button title="Sair" />
-                </ContainerUserAction>
-        </Container>
-    )
-}
+  function handleLogout() {
+    dispatch(actionLogout());
+  }
+  return (
+    <Container className="header">
+      <MobileButton onClick={onMenuMobileClick}>
+        <img src={menuIcon} alt="Menu mobile" />
+      </MobileButton>
+      <SearchContainer>
+        <Search />
+        <OrderButtons />
+      </SearchContainer>
+      <ContainerUserAction>
+        <UserName>Marcos</UserName>
+        <Button title="Sair" onClick={handleLogout} />
+      </ContainerUserAction>
+    </Container>
+  );
+};
