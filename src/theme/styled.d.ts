@@ -21,7 +21,7 @@ type Colors = {
     onSurface: string,
     onError: string,
     facebook: string,
-    twiter: string,
+    twitter: string,
     instagram: string,
     youtube: string,
 }

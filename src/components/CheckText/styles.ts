@@ -23,7 +23,7 @@ export const CheckboxContainer = styled.label`
     }
 
     input {
-        display: none;
+        margin-right: 10px;
         &:checked {
             ~ .check-icon {
                 display: inline-block;

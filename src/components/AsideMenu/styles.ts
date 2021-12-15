@@ -5,8 +5,8 @@ interface ContainerProps {
     menuMobileActive: boolean;
 }
 
-export const Container =  styled.div<ContainerProps>`
-    width: 260px;
+export const Container =  styled.form<ContainerProps>`
+    width: 270px;
     background: ${props => props.theme.colors.background};
     height: 100vh;
     padding: 15px;

@@ -19,7 +19,7 @@ export const Theme:DefaultTheme = {
         onError: '',
         facebook: '#4267B2',
         instagram: '#F77737',
-        twiter: '#1DA1F2',
+        twitter: '#1DA1F2',
         youtube: '#FF0000',
     },
 }

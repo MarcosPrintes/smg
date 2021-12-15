@@ -1,63 +1,71 @@
-import {useEffect, useRef} from 'react';
+import { useEffect, useRef } from "react";
 
-import Masonry from 'react-masonry-css';
+import Masonry from "react-masonry-css";
 
 import { Card } from "@/components/Card";
 
-import { Container, FeedContent } from './styles';
+import { Container, FeedContent, FeedbackMessage } from "./styles";
+import { Mention } from "@/store/ducks/mentions/types";
 
-const cards = [
-    {id: 1,text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"},
-    {id: 2,text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specim"},
-    {id: 3,text: "Lorem Ipsum is simply dummy text of the printing an"},
-    {id: 4,text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"},
-    {id: 5,text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specim"},
-    {id: 6,text: "Lorem Ipsum is simply dummy text of the printing an"},
-]
-
+import { ReactComponent as Spinner } from "@/assets/images/icons/spinner.svg";
 interface FeedProps {
-    onInfiteScroll: () => void;
+  onInfiteScroll: () => void;
+  mentions: Mention[];
+  isLoading: boolean;
 }
 
-export const Feed = ({onInfiteScroll}:FeedProps) => {
-    const feedref = useRef<HTMLDivElement>(null);
+export const Feed = ({
+  onInfiteScroll,
+  mentions,
+  isLoading = false,
+}: FeedProps) => {
+  const feedref = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const feed = feedref.current;
-        function handleScrool(event: Event) {
-            if(feed){
-                const scrollHeightMinusScrollTop = feed.scrollHeight - feed.scrollTop;
-                const feedHeight = feed.clientHeight;
-
-                if(feedHeight === scrollHeightMinusScrollTop) {
-                    // request infinite scroll
-                    onInfiteScroll()
-                }
-            }
-
+  useEffect(() => {
+    const feed = feedref.current;
+    function handleScrool(event: Event) {
+      if (feed) {
+        const scrollHeightMinusScrollTop =
+          feed.scrollHeight - feed.scrollTop - 1;
+        const feedHeight = feed.offsetHeight;
+        if (scrollHeightMinusScrollTop === feedHeight) {
+          onInfiteScroll();
         }
+      }
+    }
+    feed?.addEventListener("scroll", handleScrool);
+    return () => {
+      feed?.removeEventListener("scroll", handleScrool);
+    };
+  }, [onInfiteScroll]);
 
-        feed?.addEventListener("scroll", handleScrool);
+  return (
+    <Container>
+      {mentions.length === 0 ? (
+        <FeedbackMessage>Nada encontrado</FeedbackMessage>
+      ) : null}
+      <FeedContent ref={feedref} className="feed-content">
+        <Masonry
+          breakpointCols={{ default: 3, 1480: 2, 1024: 1 }}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {mentions.map((mention) => (
+            <Card key={mention.postid} mention={mention} />
+          ))}
+        </Masonry>
 
-        return () => {
-            feed?.removeEventListener("scroll", handleScrool);
-        }
-    }, [onInfiteScroll])
-
-    return (
-        <Container>
-            <FeedContent ref={feedref} className="feed-content">
-                <Masonry
-                    breakpointCols={{default: 3, 1480: 2, 1024: 1, }}
-                    className="my-masonry-grid"
-                    columnClassName="my-masonry-grid_column"
-                >
-                    {cards.map(card => (
-                        <Card key={card.id} text={card.text} />
-                    ))}
-                </Masonry>
-
-            </FeedContent>
-        </Container>
-    )
-}
+        {isLoading && (
+          <Spinner
+            style={{
+              width: 70,
+              height: 70,
+              margin: "0 auto",
+              display: "block",
+            }}
+          />
+        )}
+      </FeedContent>
+    </Container>
+  );
+};

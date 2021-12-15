@@ -7,11 +7,11 @@ import createSagaMiddleware from "redux-saga";
 import rootReducer from "./ducks/rootReducer";
 import rootSaga from "./ducks/rootSaga";
 
-import { UserState } from "./ducks/user/types";
+//import { UserState } from "./ducks/user/types";
 
-export interface ApplicationState {
-  respositories: UserState;
-}
+// export interface ApplicationState {
+//   respositories: UserState;
+// }
 
 const persistConfig = {
   key: "root",

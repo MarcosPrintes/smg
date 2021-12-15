@@ -2,17 +2,15 @@ import { useDispatch } from "react-redux";
 
 import { actionLogout } from "@/store/ducks/user/actions";
 
-import { Button } from "@/components/Button";
-
 import {
   Container,
   SearchContainer,
   ContainerUserAction,
-  UserName,
   MobileButton,
 } from "./styles";
 import { Search } from "@/components/Search";
 import { OrderButtons } from "@/components/OrderButtons";
+import { Button } from "@/components/Button";
 
 import menuIcon from "@/assets/images/icons/menu_icon.svg";
 interface HeaderProps {
@@ -35,7 +33,7 @@ export const Header = ({ onMenuMobileClick }: HeaderProps) => {
         <OrderButtons />
       </SearchContainer>
       <ContainerUserAction>
-        <UserName>Marcos</UserName>
+        {/* <UserName>Marcos</UserName> */}
         <Button title="Sair" onClick={handleLogout} />
       </ContainerUserAction>
     </Container>
