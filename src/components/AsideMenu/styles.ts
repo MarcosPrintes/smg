@@ -6,7 +6,7 @@ interface ContainerProps {
 }
 
 export const Container =  styled.form<ContainerProps>`
-    width: 270px;
+    width: 305px;
     background: ${props => props.theme.colors.background};
     height: 100vh;
     padding: 15px;
