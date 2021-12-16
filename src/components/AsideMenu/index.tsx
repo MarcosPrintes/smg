@@ -33,6 +33,7 @@ interface AsideMenuProps {
   onCloseMenu: () => void;
   onFilters: (filters: MentionsRequestParams) => void;
   categorysList: Category[];
+  isLoading?: boolean;
 }
 
 export const AsideMenu = ({
@@ -40,6 +41,7 @@ export const AsideMenu = ({
   onCloseMenu,
   onFilters,
   categorysList,
+  isLoading,
 }: AsideMenuProps) => {
   const theme = useTheme();
   const [filters, setFilters] = useState<MentionsRequestParams>({});
@@ -154,7 +156,7 @@ export const AsideMenu = ({
         </div>
       </Wrapper>
       <ContainerButton>
-        <Button type="button" title="Pesquisar" onClick={handleOnFilters} />
+        <Button isLoading={isLoading} type="button" title="Pesquisar" onClick={handleOnFilters} />
       </ContainerButton>
     </Container>
   );

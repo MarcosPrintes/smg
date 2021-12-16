@@ -59,6 +59,7 @@ export const FeedPage = () => {
         menuMobileActive={isMenuMobileActive}
         onFilters={(asideFilters) => handleAsideFilters(asideFilters)}
         categorysList={categorys.list}
+        isLoading={loading}
       />
       <div style={{ flex: 1 }}>
         <Header onMenuMobileClick={() => setIsMenuMobileActive(true)} />

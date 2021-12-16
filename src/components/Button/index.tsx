@@ -1,12 +1,15 @@
-import { ButtonHTMLAttributes } from 'react';
-import {Container} from './styles';
+import { ButtonHTMLAttributes } from "react";
+import { Container } from "./styles";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    title: string;
+  title: string;
+  isLoading?: boolean;
 }
 
-export const Button = ({title, ...rest}:ButtonProps) => {
-    return (
-        <Container {...rest} > {title} </Container>
-    )
-}
+export const Button = ({ title, isLoading, ...rest }: ButtonProps) => {
+  return (
+    <Container disabled={isLoading} {...rest}>
+      {title}
+    </Container>
+  );
+};
