@@ -64,7 +64,7 @@ export const Card = ({ mention }: CradProps) => {
     // http://localhost:3001/detail/facebook/1424939994449908%2Fposts%2F2657317241212171
     // https://www.facebook.com/detail/facebook/1424939994449908/posts/2657317241212171
 
-    let { title } = mention;
+    let { title, link } = mention;
 
     // if (["twitter"].indexOf(source) > -1) {
     //   link = link
@@ -76,13 +76,12 @@ export const Card = ({ mention }: CradProps) => {
     //     window.location.origin + "/detail/facebook/" + encodeURIComponent(link);
     // }
 
-    const w = 510;
-    const h = 500;
+    const w = 1200;
+    const h = 900;
     const left = window.screen.width / 2 - w / 2;
     const top = window.screen.height / 2 - h / 2;
-
     window.open(
-      "https://www.facebook.com/detail/facebook/1424939994449908/posts/2657317241212171",
+      link,
       title,
       `toolbar=no, location=no, directories=no, status=no,
         menubar=no, resizable=yes, copyhistory=no, 
