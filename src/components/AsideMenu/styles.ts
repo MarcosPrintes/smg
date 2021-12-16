@@ -15,6 +15,9 @@ export const Container = styled.form<ContainerProps>`
   position: relative;
   display: flex;
   flex-direction: column;
+  scrollbar-color: ${(props) => props.theme.colors.primary} transparent;
+  scrollbar-width: thin;
+
   /* width */
   ::-webkit-scrollbar {
     width: 5px;
@@ -108,6 +111,8 @@ export const FlexContainer = styled.div`
 export const WrapperCheckTextList = styled.div`
   max-height: 380px;
   overflow-y: scroll;
+  scrollbar-color: ${(props) => props.theme.colors.primary} transparent;
+  scrollbar-width: thin;
 
   /* width */
   ::-webkit-scrollbar {
