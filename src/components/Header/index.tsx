@@ -15,9 +15,10 @@ import { Button } from "@/components/Button";
 import menuIcon from "@/assets/images/icons/menu_icon.svg";
 interface HeaderProps {
   onMenuMobileClick: () => void;
+  onHandleSearch: (value: string) => void;
 }
 
-export const Header = ({ onMenuMobileClick }: HeaderProps) => {
+export const Header = ({ onMenuMobileClick, onHandleSearch }: HeaderProps) => {
   const dispatch = useDispatch();
 
   function handleLogout() {
@@ -29,7 +30,7 @@ export const Header = ({ onMenuMobileClick }: HeaderProps) => {
         <img src={menuIcon} alt="Menu mobile" />
       </MobileButton>
       <SearchContainer>
-        <Search />
+        <Search onHandleSearch={(value) => onHandleSearch(value)} />
         <OrderButtons />
       </SearchContainer>
       <ContainerUserAction>

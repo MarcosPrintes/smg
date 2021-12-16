@@ -7,15 +7,21 @@ import { Container, CheckboxContainer } from "./styles";
 import { Category } from "@/store/ducks/categorys/types";
 interface CheckTextProps extends InputHTMLAttributes<HTMLInputElement> {
   option: Category;
+  onHandleChecked: (active: boolean) => void;
 }
 
-export const CheckText = ({ option, ...rest }: CheckTextProps) => {
+export const CheckText = ({
+  option,
+  onHandleChecked,
+  ...rest
+}: CheckTextProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isActive, setIsActive] = useState(false);
-//   const theme = useTheme();
+  //   const theme = useTheme();
 
   function handleOnChange(checked: boolean) {
     setIsActive(checked);
+    onHandleChecked(checked);
   }
 
   return (

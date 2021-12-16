@@ -62,7 +62,12 @@ export const FeedPage = () => {
         isLoading={loading}
       />
       <div style={{ flex: 1 }}>
-        <Header onMenuMobileClick={() => setIsMenuMobileActive(true)} />
+        <Header
+          onMenuMobileClick={() => setIsMenuMobileActive(true)}
+          onHandleSearch={(value) =>
+            setRequestParams({ ...requestParams, keyword: value })
+          }
+        />
         <Feed
           mentions={mentionsList}
           onInfiteScroll={() => handleOnInfiniteScroll()}

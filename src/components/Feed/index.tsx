@@ -28,7 +28,7 @@ export const Feed = ({
         const scrollHeightMinusScrollTop =
           feed.scrollHeight - feed.scrollTop - 1;
         const feedHeight = feed.offsetHeight;
-        if (scrollHeightMinusScrollTop === feedHeight) {
+        if (scrollHeightMinusScrollTop - feedHeight < 3) {
           onInfiteScroll();
         }
       }

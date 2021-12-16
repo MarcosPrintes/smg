@@ -24,6 +24,7 @@ import {
   Logo,
   MobileCloseMenu,
   Wrapper,
+  WrapperCheckTextList,
 } from "./styles";
 
 import { Category } from "@/store/ducks/categorys/types";
@@ -46,10 +47,10 @@ export const AsideMenu = ({
   const theme = useTheme();
   const [filters, setFilters] = useState<MentionsRequestParams>({});
   const [sources, setSources] = useState<string[]>([]);
+  const [categorys, setCategorys] = useState<string[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [beginDate, setBeginDate] = useState<string>(
-    new Date().toISOString().split("T")[0]
-  );
+  const [beginDate, setBeginDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
 
   function handleOnFilters() {
     onFilters(filters);
@@ -71,13 +72,29 @@ export const AsideMenu = ({
     setFilters({ ...filters, source: oldSources.join(",") });
   }
 
+  function handleCategorys(data: { active: boolean; value: string }) {
+    const { active, value } = data;
+    let oldCategorys = [...categorys];
+
+    let isOnCategorys = oldCategorys.indexOf(value);
+
+    if (isOnCategorys === -1) {
+      oldCategorys.push(value);
+    } else {
+      !active && oldCategorys.splice(isOnCategorys, 1);
+    }
+
+    setCategorys(oldCategorys);
+    setFilters({ ...filters, category: oldCategorys.join(",") });
+  }
+
   return (
     <Container menuMobileActive={menuMobileActive}>
       <MobileCloseMenu onClick={onCloseMenu}>x</MobileCloseMenu>
       <Wrapper>
         <Logo />
         <div className="filters">
-          <Search />
+          <Search onHandleSearch={(value) => console.log(value)} />
           <OrderButtons />
           <span> Filtros</span>
           <div>
@@ -86,18 +103,20 @@ export const AsideMenu = ({
               type="date"
               id="start-date"
               value={beginDate}
-              onChange={(e) =>
-                setFilters({ ...filters, begin_date: e.target.value })
-              }
+              onChange={(e) => {
+                setBeginDate(e.target.value);
+                setFilters({ ...filters, begin_date: e.target.value });
+              }}
             />
             <Input
               label="Final"
               type="date"
               id="end-date"
-              onChange={
-                (e) => console.log("data", e.target.value)
-                // setFilters({ ...filters, end_date: e.target.value })
-              }
+              value={endDate}
+              onChange={(e) => {
+                setEndDate(e.target.value);
+                setFilters({ ...filters, end_date: e.target.value });
+              }}
             />
           </div>
           <FlexContainer>
@@ -142,21 +161,29 @@ export const AsideMenu = ({
               }
             />
           </FlexContainer>
-          <div>
+          <WrapperCheckTextList>
             <CheckTextList>
               {categorysList.length > 0 &&
                 categorysList.map((option) => (
                   <CheckText
+                    onHandleChecked={(active) =>
+                      handleCategorys({ active, value: option.name })
+                    }
                     key={option._id}
                     option={option}
                   />
                 ))}
             </CheckTextList>
-          </div>
+          </WrapperCheckTextList>
         </div>
       </Wrapper>
       <ContainerButton>
-        <Button isLoading={isLoading} type="button" title="Pesquisar" onClick={handleOnFilters} />
+        <Button
+          isLoading={isLoading}
+          type="button"
+          title="Pesquisar"
+          onClick={handleOnFilters}
+        />
       </ContainerButton>
     </Container>
   );

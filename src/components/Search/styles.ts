@@ -24,4 +24,10 @@ export const Container = styled.div<ContainerProps>`
         padding: .5rem;
         flex: 1;
     }
+
+    button {
+        background: transparent;
+        border: unset;
+        cursor: pointer;
+    }
 `;
