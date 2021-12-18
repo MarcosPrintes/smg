@@ -44,6 +44,7 @@ export const FeedPage = () => {
   }
 
   useEffect(() => {
+    console.log("request params", requestParams);
     dispatch(actionsGetMentions(requestParams));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [requestParams]);
@@ -60,12 +61,21 @@ export const FeedPage = () => {
         onFilters={(asideFilters) => handleAsideFilters(asideFilters)}
         categorysList={categorys.list}
         isLoading={loading}
+        setOrderButton={(data) => console.log("asidemenu data order", data)}
       />
       <div style={{ flex: 1 }}>
         <Header
           onMenuMobileClick={() => setIsMenuMobileActive(true)}
           onHandleSearch={(value) =>
             setRequestParams({ ...requestParams, keyword: value })
+          }
+          setOrderButton={(data) =>
+            setRequestParams({
+              ...requestParams,
+              page: 1,
+              sort_order: data.order,
+              sort_field: data.value,
+            })
           }
         />
         <Feed

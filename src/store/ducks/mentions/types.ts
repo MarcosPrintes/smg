@@ -79,5 +79,6 @@ export interface MentionsRequestParams {
   begin_date?: string;
   end_date?: string;
   sort_field?: string;
+  sort_order?: string;
   source?: string;
 }

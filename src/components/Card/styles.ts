@@ -92,7 +92,6 @@ export const ContentText = styled.div`
 
 export const Text = styled.p`
   color: ${(props) => props.theme.colors.onBackground};
-  line-break: anywhere;
 `;
 
 export const Rates = styled.div`

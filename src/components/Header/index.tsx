@@ -11,16 +11,21 @@ import {
   UserName,
 } from "./styles";
 import { Search } from "@/components/Search";
-import { OrderButtons } from "@/components/OrderButtons";
+import { OrderButtons, OrderItem } from "@/components/OrderButtons";
 import { Button } from "@/components/Button";
 
 import menuIcon from "@/assets/images/icons/menu_icon.svg";
 interface HeaderProps {
   onMenuMobileClick: () => void;
   onHandleSearch: (value: string) => void;
+  setOrderButton: (data: OrderItem) => void;
 }
 
-export const Header = ({ onMenuMobileClick, onHandleSearch }: HeaderProps) => {
+export const Header = ({
+  onMenuMobileClick,
+  onHandleSearch,
+  setOrderButton,
+}: HeaderProps) => {
   const dispatch = useDispatch();
   const user = useSelector(({ user }: State) => user);
 
@@ -34,7 +39,7 @@ export const Header = ({ onMenuMobileClick, onHandleSearch }: HeaderProps) => {
       </MobileButton>
       <SearchContainer>
         <Search onHandleSearch={(value) => onHandleSearch(value)} />
-        <OrderButtons />
+        <OrderButtons onOrder={(data) => setOrderButton(data)} />
       </SearchContainer>
       <ContainerUserAction>
         <UserName>Olá, {user.data.user.name}</UserName>

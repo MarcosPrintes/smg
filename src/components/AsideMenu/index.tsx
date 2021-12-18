@@ -14,7 +14,7 @@ import { CheckIcon } from "@/components/CheckIcon";
 import { CheckText } from "@/components/CheckText";
 import { Button } from "@/components/Button";
 import { Search } from "@/components/Search";
-import { OrderButtons } from "@/components/OrderButtons";
+import { OrderButtons, OrderItem } from "@/components/OrderButtons";
 
 import {
   Container,
@@ -35,6 +35,7 @@ interface AsideMenuProps {
   onFilters: (filters: MentionsRequestParams) => void;
   categorysList: Category[];
   isLoading?: boolean;
+  setOrderButton: (data:OrderItem) => void;
 }
 
 export const AsideMenu = ({
@@ -43,6 +44,7 @@ export const AsideMenu = ({
   onFilters,
   categorysList,
   isLoading,
+  setOrderButton,
 }: AsideMenuProps) => {
   const theme = useTheme();
   const [filters, setFilters] = useState<MentionsRequestParams>({});
@@ -95,7 +97,7 @@ export const AsideMenu = ({
         <Logo />
         <div className="filters">
           <Search onHandleSearch={(value) => console.log(value)} />
-          <OrderButtons />
+          <OrderButtons onOrder={(data) => setOrderButton(data) } />
           <span> Filtros</span>
           <div>
             <Input
