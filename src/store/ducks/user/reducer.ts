@@ -5,6 +5,11 @@ const INITIAL_STATE: UserState = {
   data: {
     access_token: "",
     token_type: "Bearer",
+    user: {
+      _id: 0,
+      name: "",
+      email: "",
+    },
   },
   error: false,
   loading: false,

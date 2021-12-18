@@ -1,12 +1,14 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { actionLogout } from "@/store/ducks/user/actions";
+import { State } from "@/store";
 
 import {
   Container,
   SearchContainer,
   ContainerUserAction,
   MobileButton,
+  UserName,
 } from "./styles";
 import { Search } from "@/components/Search";
 import { OrderButtons } from "@/components/OrderButtons";
@@ -20,6 +22,7 @@ interface HeaderProps {
 
 export const Header = ({ onMenuMobileClick, onHandleSearch }: HeaderProps) => {
   const dispatch = useDispatch();
+  const user = useSelector(({ user }: State) => user);
 
   function handleLogout() {
     dispatch(actionLogout());
@@ -34,7 +37,7 @@ export const Header = ({ onMenuMobileClick, onHandleSearch }: HeaderProps) => {
         <OrderButtons />
       </SearchContainer>
       <ContainerUserAction>
-        {/* <UserName>Marcos</UserName> */}
+        <UserName>Olá, {user.data.user.name}</UserName>
         <Button title="Sair" onClick={handleLogout} />
       </ContainerUserAction>
     </Container>
