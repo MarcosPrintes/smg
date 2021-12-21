@@ -106,6 +106,12 @@ export const Card = ({ mention }: CradProps) => {
     return `https://${newUrl}`;
   }
 
+  function getYoutubeIframeUrl(url: string) {
+    const newUrl = url.split("v=");
+    const youtubeCode = newUrl[1];
+    return `https://www.youtube.com/embed/${youtubeCode}`;
+  }
+
   return (
     <Container className="post" onClick={() => mediaClick()}>
       <Thumb>
@@ -116,11 +122,22 @@ export const Card = ({ mention }: CradProps) => {
           icon={!mention.source ? faGlobe : socials[mention.source].icon}
         />
 
-        {mention?.attachment && mention.attachment.image_url ? (
+        {mention?.attachment &&
+        mention.attachment.image_url &&
+        mention.source === "facebook" ? (
           <img
             src={getPhotoUrl(mention?.attachment.image_url)}
             alt={mention?.attachment.title}
           />
+        ) : null}
+
+        {mention.source === "youtube" ? (
+          <iframe
+            title={mention.title}
+            src={getYoutubeIframeUrl(mention.link)}
+            allowFullScreen
+            loading="eager"
+          ></iframe>
         ) : null}
 
         {/* <svg

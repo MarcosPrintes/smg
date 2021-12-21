@@ -3,9 +3,9 @@ import { MentionsState, ActionTypesMentions } from "./types";
 
 const INITIAL_STATE: MentionsState = {
   list: [],
-  last_page: null,
-  page: null,
-  total: null,
+  last_page: 0,
+  page: 0,
+  total: 0,
   error: false,
   loading: false,
 };

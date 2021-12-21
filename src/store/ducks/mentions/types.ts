@@ -8,9 +8,9 @@ export interface MentionsState {
   readonly list: Mention[];
   readonly loading: boolean;
   readonly error: boolean;
-  readonly last_page: number | null;
-  readonly page: number | null;
-  readonly total: number | null;
+  readonly last_page: number;
+  readonly page: number;
+  readonly total: number;
 }
 
 export interface Mention {

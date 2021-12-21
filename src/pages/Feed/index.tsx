@@ -14,7 +14,9 @@ import { Container } from "./styles";
 
 export const FeedPage = () => {
   const dispatch = useDispatch();
-  const { list, loading, page } = useSelector((state: State) => state.mentions);
+  const { list, loading, page, total } = useSelector(
+    (state: State) => state.mentions
+  );
   const categorys = useSelector((state: State) => state.categorys);
 
   const [isMenuMobileActive, setIsMenuMobileActive] = useState(false);
@@ -44,10 +46,12 @@ export const FeedPage = () => {
   }
 
   useEffect(() => {
-    console.log("request params", requestParams);
-    dispatch(actionsGetMentions(requestParams));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [requestParams]);
+    if (mentionsList.length < total) {
+      // console.log(`TAMANHO LISTA => ${mentionsList.length} TOTAL ${total}`);
+      dispatch(actionsGetMentions(requestParams));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mentionsList.length, requestParams, total]);
 
   useEffect(() => {
     dispatch(actionGetCategorys());
