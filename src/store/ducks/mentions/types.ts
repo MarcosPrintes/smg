@@ -52,7 +52,7 @@ export interface Mention {
   tags: string[];
   extracted_at: string | null;
   updated_at: string;
-  created_at: string | null;
+  created_at: string;
   // Typos facebook
   attachment?: {
     description: string;

@@ -1,7 +1,7 @@
 import { useTheme } from "styled-components";
-import moment from "moment";
-import "moment/locale/pt-br";
-import "moment-timezone";
+
+import { parseISO, formatDistance } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 import {
   faFacebook,
@@ -34,9 +34,6 @@ import { Mention } from "@/store/ducks/mentions/types";
 interface CradProps {
   mention: Mention;
 }
-
-moment.locale("pt-br");
-
 export const Card = ({ mention }: CradProps) => {
   const theme = useTheme();
 
@@ -90,9 +87,10 @@ export const Card = ({ mention }: CradProps) => {
   // }
 
   function getDate() {
-    const date = mention.created_at;
-    const dateFormatted = moment.tz(date, "America/Fortaleza").fromNow();
-    return dateFormatted;
+    const date = parseISO(mention.created_at);
+    const distance = formatDistance(date, Date.now(), { locale: ptBR });
+
+    return `Há ${distance}`;
   }
 
   return (
