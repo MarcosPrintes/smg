@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 import Masonry from "react-masonry-css";
 
@@ -28,7 +28,7 @@ export const Feed = ({
         const scrollHeightMinusScrollTop =
           feed.scrollHeight - feed.scrollTop - 1;
         const feedHeight = feed.offsetHeight;
-        if (scrollHeightMinusScrollTop - feedHeight < 3) {
+        if (scrollHeightMinusScrollTop - feedHeight < 1) {
           onInfiteScroll();
         }
       }
@@ -39,9 +39,13 @@ export const Feed = ({
     };
   }, [onInfiteScroll]);
 
+  const listSize = useCallback(() => {
+    return mentions.length > 0;
+  }, [mentions.length]);
+
   return (
     <Container>
-      {mentions.length === 0 ? (
+      {!isLoading && mentions.length === 0 ? (
         <FeedbackMessage>Nada encontrado</FeedbackMessage>
       ) : null}
       <FeedContent ref={feedref} className="feed-content">
@@ -62,6 +66,10 @@ export const Feed = ({
               height: 70,
               margin: "0 auto",
               display: "block",
+              position: listSize() ? "relative" : "absolute",
+              left: listSize() ? "auto" : "50%",
+              top: listSize() ? "auto" : "50%",
+              transform: listSize() ? "unset" : "tr()anslate(-50%, -100%)",
             }}
           />
         )}

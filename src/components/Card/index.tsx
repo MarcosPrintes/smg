@@ -1,6 +1,7 @@
 import { useTheme } from "styled-components";
 import moment from "moment";
 import "moment/locale/pt-br";
+import "moment-timezone";
 
 import {
   faFacebook,
@@ -58,46 +59,22 @@ export const Card = ({ mention }: CradProps) => {
     },
   };
 
-  function handleClickDetail() {
-    // if (this.popup && !this.popup.closed) this.popup.close();
+  function mediaClick() {
+    let { title, link, attachment, source } = mention;
 
-    // http://localhost:3001/detail/facebook/1424939994449908%2Fposts%2F2657317241212171
-    // https://www.facebook.com/detail/facebook/1424939994449908/posts/2657317241212171
+    const windowUrl = source === "twitter" ? attachment?.url : link;
 
-    let { title, link } = mention;
-
-    // if (["twitter"].indexOf(source) > -1) {
-    //   link = link
-    //     .replace("www.", "")
-    //     .replace(/^https?\:\/\//i, "https://mobile.");
-    // } else if (source == "facebook") {
-    //   link = link.split(".com/")[1];
-    //   link =
-    //     window.location.origin + "/detail/facebook/" + encodeURIComponent(link);
-    // }
-
-    const w = 1200;
-    const h = 900;
+    const w = 700;
+    const h = 600;
     const left = window.screen.width / 2 - w / 2;
     const top = window.screen.height / 2 - h / 2;
     window.open(
-      link,
+      windowUrl,
       title,
       `toolbar=no, location=no, directories=no, status=no,
         menubar=no, resizable=yes, copyhistory=no, 
         width=${w}, height=${h}, top=${top}, left=${left}`
     );
-  }
-
-  function mediaClick() {
-    const { source, attachment } = mention;
-
-    if (source === "youtube" || (attachment && attachment.type === "video")) {
-      // this.setState({ showPlayer: true });
-      return;
-    }
-
-    handleClickDetail();
   }
 
   function getPhotoUrl(url: string): string {
@@ -106,10 +83,16 @@ export const Card = ({ mention }: CradProps) => {
     return `https://${newUrl}`;
   }
 
-  function getYoutubeIframeUrl(url: string) {
-    const newUrl = url.split("v=");
-    const youtubeCode = newUrl[1];
-    return `https://www.youtube.com/embed/${youtubeCode}`;
+  // function getYoutubeIframeUrl(url: string) {
+  //   const newUrl = url.split("v=");
+  //   const youtubeCode = newUrl[1];
+  //   return `https://www.youtube.com/embed/${youtubeCode}`;
+  // }
+
+  function getDate() {
+    const date = mention.created_at;
+    const dateFormatted = moment.tz(date, "America/Fortaleza").fromNow();
+    return dateFormatted;
   }
 
   return (
@@ -131,36 +114,19 @@ export const Card = ({ mention }: CradProps) => {
           />
         ) : null}
 
-        {mention.source === "youtube" ? (
-          <iframe
-            title={mention.title}
-            src={getYoutubeIframeUrl(mention.link)}
-            allowFullScreen
-            loading="eager"
-          ></iframe>
+        {mention.source === "youtube" && mention.attachment?.image_url ? (
+          <img
+            src={mention?.attachment.image_url}
+            alt={mention?.attachment.title}
+          />
         ) : null}
 
-        {/* <svg
-          className="youtube-play"
-          height="90px"
-          viewBox="0 0 68 48"
-          width="90px"
-        >
-          <path
-            className="ytp-large-play-button-bg"
-            d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-            fill="#212121"
-            fillOpacity="0.8"
-          ></path>
-          <path d="M 45,24 27,14 27,34" fill="#fff"></path>
-        </svg>
-
-        <FontAwesomeIcon
-          size="2x"
-          className="social-brand"
-          color="#212121"
-          icon={faPlay}
-        /> */}
+        {mention.source === "twitter" && mention.attachment?.image_url ? (
+          <img
+            src={mention?.attachment.image_url}
+            alt={mention?.attachment.title}
+          />
+        ) : null}
       </Thumb>
       <ContentText>
         <Text> {mention.message} </Text>
@@ -205,12 +171,10 @@ export const Card = ({ mention }: CradProps) => {
           )}
 
           <AuthorName title={mention.author.name}>
-            {mention.source === "youtube" ? mention.title : mention.author.name}
+            {mention.author.name ? mention.author.name : mention.title}
           </AuthorName>
         </div>
-        <div>
-          {mention.date && <span>{moment(mention.date).fromNow()}</span>}
-        </div>
+        <div>{mention.created_at && <span>{getDate()}</span>}</div>
       </BottomCard>
     </Container>
   );

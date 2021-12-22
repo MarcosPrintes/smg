@@ -32,16 +32,16 @@ import { Category } from "@/store/ducks/categorys/types";
 interface AsideMenuProps {
   menuMobileActive: boolean;
   onCloseMenu: () => void;
-  onFilters: (filters: MentionsRequestParams) => void;
+  onClickFilters: (filters: MentionsRequestParams) => void;
   categorysList: Category[];
   isLoading?: boolean;
-  setOrderButton: (data:OrderItem) => void;
+  setOrderButton: (data: OrderItem) => void;
 }
 
 export const AsideMenu = ({
   menuMobileActive,
   onCloseMenu,
-  onFilters,
+  onClickFilters,
   categorysList,
   isLoading,
   setOrderButton,
@@ -55,7 +55,7 @@ export const AsideMenu = ({
   const [endDate, setEndDate] = useState<string>("");
 
   function handleOnFilters() {
-    onFilters(filters);
+    onClickFilters(filters);
   }
 
   function handleSources(data: { active: boolean; value: string }) {
@@ -70,8 +70,8 @@ export const AsideMenu = ({
       !active && oldSources.splice(isOnSources, 1);
     }
 
-    setSources(oldSources);
     setFilters({ ...filters, source: oldSources.join(",") });
+    setSources(oldSources);
   }
 
   function handleCategorys(data: { active: boolean; value: string }) {
@@ -97,7 +97,7 @@ export const AsideMenu = ({
         <Logo />
         <div className="filters">
           <Search onHandleSearch={(value) => console.log(value)} />
-          <OrderButtons onOrder={(data) => setOrderButton(data) } />
+          <OrderButtons onOrder={(data) => setOrderButton(data)} />
           <span> Filtros</span>
           <div>
             <Input

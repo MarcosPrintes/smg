@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { AsideMenu } from "@/components/AsideMenu";
 import { Feed } from "@/components/Feed";
-import { useState } from "react";
+
 import { Header } from "@/components/Header";
 
 import { State } from "@/store";
@@ -14,7 +14,7 @@ import { Container } from "./styles";
 
 export const FeedPage = () => {
   const dispatch = useDispatch();
-  const { list, loading, page, total } = useSelector(
+  const { list, loading, page, last_page } = useSelector(
     (state: State) => state.mentions
   );
   const categorys = useSelector((state: State) => state.categorys);
@@ -36,22 +36,22 @@ export const FeedPage = () => {
   }, [list, page]);
 
   function handleOnInfiniteScroll() {
-    if (requestParams.page) {
+    if (requestParams.page && !loading && page < last_page) {
       setRequestParams({ ...requestParams, page: requestParams?.page + 1 });
     }
   }
 
   function handleAsideFilters(data: MentionsRequestParams) {
+    setMentionsList([]);
     setRequestParams({ ...requestParams, ...data, page: 1 });
   }
 
   useEffect(() => {
-    if (mentionsList.length < total) {
-      // console.log(`TAMANHO LISTA => ${mentionsList.length} TOTAL ${total}`);
+    if (!loading) {
       dispatch(actionsGetMentions(requestParams));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mentionsList.length, requestParams, total]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requestParams, dispatch]);
 
   useEffect(() => {
     dispatch(actionGetCategorys());
@@ -62,7 +62,7 @@ export const FeedPage = () => {
       <AsideMenu
         onCloseMenu={() => setIsMenuMobileActive(false)}
         menuMobileActive={isMenuMobileActive}
-        onFilters={(asideFilters) => handleAsideFilters(asideFilters)}
+        onClickFilters={(asideFilters) => handleAsideFilters(asideFilters)}
         categorysList={categorys.list}
         isLoading={loading}
         setOrderButton={(data) => console.log("asidemenu data order", data)}
