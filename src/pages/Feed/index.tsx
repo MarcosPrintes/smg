@@ -49,7 +49,7 @@ export const FeedPage = () => {
   useEffect(() => {
     if (!loading) {
       dispatch(actionsGetMentions(requestParams));
-    }
+    } 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [requestParams, dispatch]);
 
