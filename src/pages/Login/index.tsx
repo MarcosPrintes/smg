@@ -9,13 +9,14 @@ import { actionLoginRequest, actionLogout } from "@/store/ducks/user/actions";
 import { State } from "@/store";
 
 import Logo from "@/assets/images/logo-color.png";
+import { ReactComponent as Spinner } from "@/assets/images/icons/spinner.svg";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const { error } = useSelector(({ user }: State) => user);
+  const { error, loading } = useSelector(({ user }: State) => user);
 
   /**
     name: "Diego Vissini",
@@ -36,7 +37,7 @@ export const Login = () => {
       toast.error("Email ou senha inválida");
       dispatch(actionLogout());
     }
-  }, [error]);
+  }, [error, dispatch]);
 
   return (
     <Container>
@@ -55,7 +56,22 @@ export const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="button" onClick={handleSubmit}>
-          Entrar
+          {loading ? (
+            <Spinner
+              style={{
+                width: 30,
+                height: 30,
+                margin: "0 auto",
+                display: "block",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            />
+          ) : (
+            "Entrar"
+          )}
         </button>
       </Form>
     </Container>

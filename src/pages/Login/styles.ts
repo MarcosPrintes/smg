@@ -35,8 +35,10 @@ export const Form = styled.form`
     font-size: 1.1rem;
     margin-top: 30px;
     padding: 10px;
+    height: 45px;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
     &:hover {
       background: ${(props) => lighten(0.4, props.theme.colors.onBackground)};
     }

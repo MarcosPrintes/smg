@@ -9,7 +9,9 @@ import {
   actionLoginSuccess,
 } from "./actions";
 
-export function* sagaLogin({ payload }: ReturnType<typeof actionLoginRequest>):Generator {
+export function* sagaLogin({
+  payload,
+}: ReturnType<typeof actionLoginRequest>): Generator {
   try {
     const response = yield call(login, payload);
     yield put(actionLoginSuccess(response as LoginResponse));
