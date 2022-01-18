@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Form } from "./styles";
 
-import { useDispatch } from "react-redux";
-import { actionLoginRequest } from "@/store/ducks/user/actions";
+import { toast } from "react-toastify";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { actionLoginRequest, actionLogout } from "@/store/ducks/user/actions";
+import { State } from "@/store";
 
 import Logo from "@/assets/images/logo-color.png";
 
@@ -11,16 +15,28 @@ export const Login = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  const { error } = useSelector(({ user }: State) => user);
 
+  /**
+    name: "Diego Vissini",
+    password: "87654321",
+    email: "diego@vissini.com.br",
+   */
   function handleSubmit() {
     dispatch(
       actionLoginRequest({
-        name: "Diego Vissini",
-        password: "87654321",
-        email: "diego@vissini.com.br",
+        email: email,
+        password: password,
       })
     );
   }
+
+  useEffect(() => {
+    if (error) {
+      toast.error("Email ou senha inválida");
+      dispatch(actionLogout());
+    }
+  }, [error]);
 
   return (
     <Container>

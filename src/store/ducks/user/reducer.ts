@@ -22,7 +22,7 @@ const reducer: Reducer<UserState> = (state = INITIAL_STATE, action) => {
     case ActionTypesUser.USER_LOGIN_SUCCESS:
       return { ...state, loading: false, data: { ...action.payload } };
     case ActionTypesUser.USER_LOGIN_FAIL:
-      return { ...state, loading: false };
+      return { ...state, loading: false, error: true };
     case ActionTypesUser.USER_LOGOUT:
       return INITIAL_STATE;
     default:
