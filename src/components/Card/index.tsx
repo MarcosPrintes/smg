@@ -11,14 +11,22 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import {
-  faHeart,
-  faComment,
-  faShare,
   faUser,
   faEye,
   faGlobe,
+  faThumbsUp,
+  faCommentAlt,
 } from "@fortawesome/free-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { ReactComponent as YoutubeLike } from "../../assets/images/icons/youtube-like.svg";
+import { ReactComponent as YoutubeShare } from "../../assets/images/icons/youtube-share.svg";
+// import { ReactComponent as FacebookLike } from "../../assets/images/icons/facebook-like.svg";
+import { ReactComponent as InstagramLike } from "../../assets/images/icons/instagram-like.svg";
+import { ReactComponent as InstagramComment } from "../../assets/images/icons/instagram-comment.svg";
+import { ReactComponent as TwitterLikes } from "../../assets/images/icons/twitter-likes.svg";
+import { ReactComponent as TwitterRetweets } from "../../assets/images/icons/twitter-retwitter.svg";
 
 import {
   AuthorName,
@@ -100,35 +108,72 @@ export const Card = ({ mention }: CradProps) => {
       <ContentText>
         <Text> {mention.message} </Text>
         <Rates>
-          {mention.statistics.like ? (
+          {mention.statistics.likes ? (
             <RateItem tooltip="Curtidas">
-              <FontAwesomeIcon icon={faHeart} />
-              <span>{mention.statistics.like}</span>
+              {mention.source === "facebook" && (
+                <FontAwesomeIcon color="#54667a" icon={faThumbsUp} />
+              )}
+
+              {mention.source === "youtube" && (
+                <YoutubeLike color="#54667a" width={20} height={20} />
+              )}
+
+              {mention.source === "instagram" && (
+                <InstagramLike color="#54667a" width={20} height={20} />
+              )}
+
+              {mention.source === "twitter" && (
+                <TwitterLikes color="#54667a" width={20} height={20} />
+              )}
+
+              <span>{mention.statistics.likes}</span>
               <div className="tooltip">Curtidas</div>
             </RateItem>
           ) : null}
 
-          {mention.statistics.view ? (
+          {mention.statistics.views ? (
             <RateItem tooltip="Visualizações">
-              <FontAwesomeIcon icon={faEye} />
-              <span>{mention.statistics.view}</span>
+              <FontAwesomeIcon color="#54667a" icon={faEye} />
+              <span>{mention.statistics.views}</span>
               <div className="tooltip">Visualizações</div>
             </RateItem>
           ) : null}
 
-          {mention.statistics.comments ? (
-            <RateItem tooltip="Comentáros">
-              <FontAwesomeIcon icon={faComment} />
-              <span> {mention.statistics.comments} </span>
-              <div className="tooltip">Comentáros</div>
+          {mention.statistics.shares ? (
+            <RateItem tooltip="Curtidas">
+              {mention.source === "youtube" && (
+                <YoutubeShare color="#54667a" width={20} height={20} />
+              )}
+
+              {mention.source === "facebook" && (
+                <YoutubeShare color="#54667a" width={20} height={20} />
+              )}
+
+              {mention.source === "twitter" && (
+                <TwitterRetweets color="#54667a" width={20} height={20} />
+              )}
+
+              <span>{mention.statistics.shares}</span>
+              <div className="tooltip">Compartilhamentos</div>
             </RateItem>
           ) : null}
+          {mention.statistics.comments ? (
+            <RateItem tooltip="Curtidas">
+              {mention.source === "facebook" && (
+                <FontAwesomeIcon color="#54667a" icon={faCommentAlt} />
+              )}
 
-          <RateItem tooltip="Compartilhamentos">
-            <FontAwesomeIcon className="rate-icon" icon={faShare} />
-            <span> 0 </span>
-            <div className="tooltip">Compartilhamentos</div>
-          </RateItem>
+              {mention.source === "youtube" && (
+                <FontAwesomeIcon color="#54667a" icon={faCommentAlt} />
+              )}
+
+              {mention.source === "instagram" && (
+                <InstagramComment width={20} height={20} />
+              )}
+              <span>{mention.statistics.comments}</span>
+              <div className="tooltip">Comentários</div>
+            </RateItem>
+          ) : null}
         </Rates>
       </ContentText>
       <BottomCard>
