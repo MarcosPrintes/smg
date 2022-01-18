@@ -90,13 +90,21 @@ export const AsideMenu = ({
     setFilters({ ...filters, category: oldCategorys.join(",") });
   }
 
+  function onHandleSearch(value: string) {
+    console.log("value", value);
+    setFilters({ ...filters, keyword: value });
+  }
+
   return (
     <Container menuMobileActive={menuMobileActive}>
       <MobileCloseMenu onClick={onCloseMenu}>x</MobileCloseMenu>
       <Wrapper>
         <Logo />
         <div className="filters">
-          <Search onHandleSearch={(value) => console.log(value)} />
+          <Search
+            isOnAsideMenu
+            onHandleSearch={(value) => onHandleSearch(value)}
+          />
           <OrderButtons onOrder={(data) => setOrderButton(data)} />
           <span> Filtros</span>
           <div>

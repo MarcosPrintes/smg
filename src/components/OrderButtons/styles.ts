@@ -4,6 +4,7 @@ import { darken } from "polished";
 export const Container = styled.div`
   display: flex;
   align-items: center;
+
   span {
     margin-right: 1rem;
     font-weight: 600;
@@ -17,6 +18,7 @@ export const OrderButton = styled.button`
   border-radius: 0.25rem;
   background: transparent;
   padding: 0.2rem 0.3rem;
+  margin-bottom: 3px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-flex;
@@ -26,8 +28,8 @@ export const OrderButton = styled.button`
     margin-left: 0.5rem;
   }
 
-  & + & {
-    margin-left: 1rem;
+  & {
+    margin-right: 0.5rem;
   }
 
   &:hover {

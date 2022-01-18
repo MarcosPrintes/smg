@@ -19,7 +19,7 @@ export const Thumb = styled.div<PropsThumb>`
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   overflow: hidden;
-  min-height: ${(props) => (props.hasThumbnail ? "250px" : "50px")};
+  min-height: ${(props) => (props.hasThumbnail ? "170px" : "50px")};
 
   .social-brand {
     position: absolute;
@@ -102,6 +102,11 @@ export const ContentText = styled.div`
 
 export const Text = styled.p`
   color: ${(props) => props.theme.colors.onBackground};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 `;
 
 export const Rates = styled.div`
@@ -115,12 +120,13 @@ export const BottomCard = styled.div`
   padding: 1.5rem 1rem;
   color: ${(props) => props.theme.colors.onBackground};
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  flex-direction: column;
 
   > div:first-of-type {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
     span {
       margin-left: 0.5rem;
     }

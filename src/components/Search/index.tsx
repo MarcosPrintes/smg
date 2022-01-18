@@ -8,9 +8,10 @@ import { Container } from "./styles";
 
 interface ISearchProps {
   onHandleSearch: (value: string) => void;
+  isOnAsideMenu?: boolean;
 }
 
-export const Search = ({ onHandleSearch }: ISearchProps) => {
+export const Search = ({ onHandleSearch, isOnAsideMenu }: ISearchProps) => {
   const theme = useTheme();
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState("");
@@ -34,7 +35,13 @@ export const Search = ({ onHandleSearch }: ISearchProps) => {
         value={value}
         placeholder="Digite aqui uma palavra chave..."
         onChange={(e) => setValue(e.target.value)}
-        onKeyUp={(e) => e.key === "Enter" && onHandleSearch(value)}
+        onKeyUp={(e) => {
+          if (isOnAsideMenu) {
+            onHandleSearch(value);
+          } else {
+            e.key === "Enter" && onHandleSearch(value);
+          }
+        }}
       />
       <button type="button" onClick={() => onHandleSearch(value)}>
         <FontAwesomeIcon

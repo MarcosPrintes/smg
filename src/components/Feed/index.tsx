@@ -50,7 +50,7 @@ export const Feed = ({
       ) : null}
       <FeedContent ref={feedref} className="feed-content">
         <Masonry
-          breakpointCols={{ default: 3, 1480: 2, 1024: 1 }}
+          breakpointCols={{ default: 4, 1580: 3, 1480: 2, 1024: 1 }}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
