@@ -60,6 +60,7 @@ export const AsideMenu = ({
 
   function handleOnFilters() {
     onClickFilters(filters);
+    onCloseMenu();
   }
 
   function handleSources(data: { active: boolean; value: string }) {
