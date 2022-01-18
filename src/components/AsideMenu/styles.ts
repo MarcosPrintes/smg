@@ -7,7 +7,7 @@ interface ContainerProps {
 
 export const Container = styled.form<ContainerProps>`
   width: 305px;
-  background: ${(props) => props.theme.colors.background};
+  background: ${(props) => props.theme.colors.onPrimary};
   height: 100vh;
   padding: 15px;
   overflow-y: scroll;
@@ -39,7 +39,7 @@ export const Container = styled.form<ContainerProps>`
     > span {
       color: ${(props) => props.theme.colors.onBackground};
       display: block;
-      font-weight: 900;
+      font-weight: 600;
       margin-bottom: 1rem;
     }
   }
@@ -83,7 +83,7 @@ export const Container = styled.form<ContainerProps>`
 `;
 
 export const Wrapper = styled.div`
-    flex: 1;
+  flex: 1;
   @media only screen and (max-width: 1024px) {
     overflow-y: scroll;
     padding: 15px 15px 0 15px;

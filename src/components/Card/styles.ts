@@ -10,12 +10,17 @@ export const Container = styled.div`
   cursor: pointer;
 `;
 
-export const Thumb = styled.div`
+interface PropsThumb {
+  hasThumbnail: boolean | undefined | string | null;
+}
+
+export const Thumb = styled.div<PropsThumb>`
   position: relative;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   overflow: hidden;
-  min-height: 250px;
+  min-height: ${(props) => (props.hasThumbnail ? "250px" : "50px")};
+
   .social-brand {
     position: absolute;
     top: 10px;
@@ -24,7 +29,7 @@ export const Thumb = styled.div`
   }
 
   iframe {
-    width:100%;
+    width: 100%;
     height: 200px;
   }
 `;

@@ -57,34 +57,20 @@ export const Card = ({ mention }: CradProps) => {
   };
 
   function mediaClick() {
-    let { title, link, attachment, source } = mention;
-
-    const windowUrl = source === "twitter" ? attachment?.url : link;
+    let { title, link } = mention;
 
     const w = 700;
     const h = 600;
     const left = window.screen.width / 2 - w / 2;
     const top = window.screen.height / 2 - h / 2;
     window.open(
-      windowUrl,
+      link,
       title,
       `toolbar=no, location=no, directories=no, status=no,
         menubar=no, resizable=yes, copyhistory=no, 
         width=${w}, height=${h}, top=${top}, left=${left}`
     );
   }
-
-  function getPhotoUrl(url: string): string {
-    const newUrl = url.replace("//", "");
-
-    return `https://${newUrl}`;
-  }
-
-  // function getYoutubeIframeUrl(url: string) {
-  //   const newUrl = url.split("v=");
-  //   const youtubeCode = newUrl[1];
-  //   return `https://www.youtube.com/embed/${youtubeCode}`;
-  // }
 
   function getDate() {
     const date = parseISO(mention.created_at);
@@ -95,31 +81,16 @@ export const Card = ({ mention }: CradProps) => {
 
   return (
     <Container className="post" onClick={() => mediaClick()}>
-      <Thumb>
+      <Thumb
+        hasThumbnail={mention?.attachment && mention?.attachment?.image_url}
+      >
         <FontAwesomeIcon
           size="2x"
           className="social-brand"
           color={!mention.source ? "#ccc" : socials[mention.source].color}
           icon={!mention.source ? faGlobe : socials[mention.source].icon}
         />
-
-        {mention?.attachment &&
-        mention.attachment.image_url &&
-        mention.source === "facebook" ? (
-          <img
-            src={getPhotoUrl(mention?.attachment.image_url)}
-            alt={mention?.attachment.title}
-          />
-        ) : null}
-
-        {mention.source === "youtube" && mention.attachment?.image_url ? (
-          <img
-            src={mention?.attachment.image_url}
-            alt={mention?.attachment.title}
-          />
-        ) : null}
-
-        {mention.source === "twitter" && mention.attachment?.image_url ? (
+        {mention?.attachment ? (
           <img
             src={mention?.attachment.image_url}
             alt={mention?.attachment.title}
