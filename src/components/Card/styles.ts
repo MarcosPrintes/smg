@@ -48,12 +48,11 @@ export const RateItem = styled.button<RateItemProps>`
   transition: all 0.3s ease;
   .tooltip {
     visibility: hidden;
-    width: 130px;
+    width: max-content;
     background-color: ${(props) => props.theme.colors.onBackground};
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
     position: absolute;
     z-index: 1;
     bottom: 125%;
@@ -61,7 +60,7 @@ export const RateItem = styled.button<RateItemProps>`
     margin-left: -60px;
     opacity: 0;
     transition: opacity 0.3s;
-    padding: 0.5rem 0.2rem;
+    padding: 0.5rem 0.7rem;
     &::after {
       content: "";
       position: absolute;

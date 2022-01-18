@@ -154,7 +154,11 @@ export const Card = ({ mention }: CradProps) => {
               )}
 
               <span>{mention.statistics.shares}</span>
-              <div className="tooltip">Compartilhamentos</div>
+              <div className="tooltip">
+                {mention.source === "twitter"
+                  ? "Retweets"
+                  : "Compartilhamentos"}
+              </div>
             </RateItem>
           ) : null}
           {mention.statistics.comments ? (
