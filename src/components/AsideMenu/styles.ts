@@ -141,14 +141,17 @@ export const ContainerButton = styled.div`
   margin-top: 0.5rem;
 `;
 
-export const MobileCloseMenu = styled.button`
+export const MobileCloseMenu = styled.button.attrs({
+  type: "button",
+})`
   display: none;
   background: transparent;
   border: unset;
   position: absolute;
   top: 15px;
-  right: 15px;
+  right: 25px;
   font-size: 1.5rem;
+  cursor: pointer;
   @media screen and (max-width: 1024px) {
     display: block;
   }

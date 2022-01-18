@@ -7,6 +7,10 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
+import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { MentionsRequestParams } from "@/store/ducks/mentions/types";
 
 import { Input } from "@/components/Input";
@@ -97,7 +101,9 @@ export const AsideMenu = ({
 
   return (
     <Container menuMobileActive={menuMobileActive}>
-      <MobileCloseMenu onClick={onCloseMenu}>x</MobileCloseMenu>
+      <MobileCloseMenu type="button" onClick={onCloseMenu}>
+        <FontAwesomeIcon color={theme.colors.primary} icon={faWindowClose} />
+      </MobileCloseMenu>
       <Wrapper>
         <Logo />
         <div className="filters">
@@ -113,6 +119,7 @@ export const AsideMenu = ({
               type="date"
               id="start-date"
               value={beginDate}
+              style={{ marginRight: "10px" }}
               onChange={(e) => {
                 setBeginDate(e.target.value);
                 setFilters({ ...filters, begin_date: e.target.value });

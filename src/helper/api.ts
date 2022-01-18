@@ -39,6 +39,7 @@ export const mentions = async (
 
 export const categorys = async (token: string) => {
   const response = await api.get("/api/v1/categories", {
+    params: { per_page: 100 },
     headers: { Authorization: `Bearer ${token}` },
   });
 
