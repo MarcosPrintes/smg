@@ -18,7 +18,7 @@ const orderByList: OrderItem[] = [
     id: 1,
     value: "engagement",
     title: "Engajamento",
-    active: false,
+    active: true,
     order: "asc",
   },
   {
@@ -77,7 +77,7 @@ export const OrderButtons = ({ onOrder }: IOrderButton) => {
             className={`${active ? "is-active" : ""}  order-button`}
           >
             {title}
-            {active && (
+            {active && title !== "Engajamento" && (
               <FontAwesomeIcon
                 className="order-button-icon"
                 icon={order === "asc" ? faChevronUp : faChevronDown}

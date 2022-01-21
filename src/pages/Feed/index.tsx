@@ -73,14 +73,23 @@ export const FeedPage = () => {
           onHandleSearch={(value) =>
             setRequestParams({ ...requestParams, keyword: value })
           }
-          setOrderButton={(data) =>
-            setRequestParams({
-              ...requestParams,
-              page: 1,
-              sort_order: data.order,
-              sort_field: data.value,
-            })
-          }
+          setOrderButton={(data) => {
+            if (data.id === 1) {
+              delete requestParams.sort_field;
+              delete requestParams.sort_order;
+              setRequestParams({
+                ...requestParams,
+                page: 1,
+              });
+            } else {
+              setRequestParams({
+                ...requestParams,
+                page: 1,
+                sort_order: data.order,
+                sort_field: data.value,
+              });
+            }
+          }}
         />
         <Feed
           mentions={mentionsList}

@@ -26,21 +26,31 @@ export const Form = styled.form`
     margin-bottom: 30px;
     padding-bottom: 5px;
   }
+`;
 
-  button {
-    background: transparent;
-    border: 1px solid ${(props) => props.theme.colors.onBackground};
-    color: ${(props) => props.theme.colors.onBackground};
-    border-radius: 6px;
-    font-size: 1.1rem;
-    margin-top: 30px;
-    padding: 10px;
-    height: 45px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    &:hover {
-      background: ${(props) => lighten(0.4, props.theme.colors.onBackground)};
-    }
+export const LoginButton = styled.button`
+  background: transparent;
+  border: 1px solid ${(props) => props.theme.colors.onBackground};
+  color: ${(props) => props.theme.colors.onBackground};
+  border-radius: 6px;
+  font-size: 1.1rem;
+  margin-top: 30px;
+  padding: 10px;
+  height: 45px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  &:hover {
+    background: ${(props) => lighten(0.4, props.theme.colors.onBackground)};
   }
+`;
+
+export const ResetPasswordButton = styled.button`
+  background: transparent;
+  border: unset;
+  margin-top: 2rem;
+  text-decoration: underline;
+  cursor: pointer;
+  color: ${(props) => props.theme.colors.onBackground};
+  font-size: 1.1rem;
 `;

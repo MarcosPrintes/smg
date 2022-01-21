@@ -45,3 +45,9 @@ export const categorys = async (token: string) => {
 
   return response.data;
 };
+
+export const retrievePasswordEmail = async (email: string) => {
+  const response = await api.post("api/password/email", { email });
+
+  return response.data;
+};
