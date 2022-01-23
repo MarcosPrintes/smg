@@ -24,14 +24,22 @@ export const Form = styled.form`
   margin-top: 30px;
   width: 100%;
   max-width: 320px;
-
   input {
+    width: 100%;
     background: transparent;
     font-size: 1rem;
     border: unset;
     border-bottom: 1px solid ${(props) => props.theme.colors.onBackground};
-    margin-bottom: 30px;
-    padding-bottom: 5px;
+    margin-bottom: 0.5rem;
+    padding-bottom: 1px;
+  }
+`;
+
+export const FormRow = styled.div`
+  margin-bottom: 1rem;
+  p {
+    font-size: 10px;
+    color: ${(props) => props.theme.colors.youtube};
   }
 `;
 
@@ -52,17 +60,7 @@ export const LoginButton = styled.button`
   }
 `;
 
-export const ResetPasswordButton = styled.button`
-  background: transparent;
-  border: unset;
-  margin-top: 2rem;
-  text-decoration: underline;
-  cursor: pointer;
-  color: ${(props) => props.theme.colors.onBackground};
-  font-size: 1.1rem;
-`;
-
-export const ToRegisterButton = styled(Link)`
+export const BackToLoginButton = styled(Link)`
   background: transparent;
   border: unset;
   margin-top: 2rem;
@@ -71,5 +69,5 @@ export const ToRegisterButton = styled(Link)`
   color: ${(props) => props.theme.colors.onBackground};
   font-size: 1.1rem;
   display: block;
-  margin: 1rem auto;
+  margin: 2rem auto 0;
 `;

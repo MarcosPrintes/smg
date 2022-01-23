@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { Container, Form, LoginButton, ResetPasswordButton } from "./styles";
+import {
+  Container,
+  Form,
+  LoginButton,
+  ResetPasswordButton,
+  ToRegisterButton,
+} from "./styles";
 
 import { toast } from "react-toastify";
 
@@ -95,13 +101,18 @@ export const Login = () => {
                 "Entrar"
               )}
             </LoginButton>
-            <ResetPasswordButton
-              type="button"
-              onClick={() => setIsRretrievePassword(true)}
-            >
-              Recuperar senha
-            </ResetPasswordButton>
+
+            <ToRegisterButton to="/register">Registrar</ToRegisterButton>
           </>
+        )}
+
+        {!isRretrievePassword && (
+          <ResetPasswordButton
+            type="button"
+            onClick={() => setIsRretrievePassword(true)}
+          >
+            Recuperar senha
+          </ResetPasswordButton>
         )}
 
         {isRretrievePassword && (

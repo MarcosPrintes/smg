@@ -5,6 +5,7 @@ import { State } from "@/store";
 
 import { FeedPage } from "@/pages/Feed";
 import { Login } from "@/pages/Login";
+import { Register } from "@/pages/Register";
 
 interface IRouteProps {
   component: React.ComponentType;
@@ -29,11 +30,30 @@ export function AppRoutes() {
         <Route
           path="/"
           caseSensitive={true}
-          element={<PrivateLoginRoute isAuth={data.access_token !== ''} component={Login} />}
+          element={
+            <PrivateLoginRoute
+              isAuth={data.access_token !== ""}
+              component={Login}
+            />
+          }
         />
         <Route
           path="/feed"
-          element={<PrivateFeedRoute isAuth={data.access_token !== ''} component={FeedPage} />}
+          element={
+            <PrivateFeedRoute
+              isAuth={data.access_token !== ""}
+              component={FeedPage}
+            />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PrivateLoginRoute
+              isAuth={data.access_token !== ""}
+              component={Register}
+            />
+          }
         />
       </Routes>
     </BrowserRouter>

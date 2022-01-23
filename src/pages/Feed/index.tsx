@@ -34,6 +34,10 @@ export const FeedPage = () => {
     } else {
       setMentionsList((prevState) => [...prevState, ...list]);
     }
+
+    return () => {
+      setMentionsList([]);
+    };
   }, [list, page]);
 
   function handleOnInfiniteScroll() {
