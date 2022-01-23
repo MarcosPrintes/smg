@@ -11,6 +11,7 @@ import { Mention, MentionsRequestParams } from "@/store/ducks/mentions/types";
 import { actionsGetMentions } from "@/store/ducks/mentions/actions";
 import { actionGetCategorys } from "@/store/ducks/categorys/actions";
 import { Container } from "./styles";
+import { OrderItem } from "@/components/OrderButtons";
 
 export const FeedPage = () => {
   const dispatch = useDispatch();
@@ -57,6 +58,24 @@ export const FeedPage = () => {
     dispatch(actionGetCategorys());
   }, [dispatch]);
 
+  function handleSortOrderButtons(data: OrderItem) {
+    if (data.id === 1) {
+      delete requestParams.sort_field;
+      delete requestParams.sort_order;
+      setRequestParams({
+        ...requestParams,
+        page: 1,
+      });
+    } else {
+      setRequestParams({
+        ...requestParams,
+        page: 1,
+        sort_order: data.order,
+        sort_field: data.value,
+      });
+    }
+  }
+
   return (
     <Container>
       <AsideMenu
@@ -65,7 +84,7 @@ export const FeedPage = () => {
         onClickFilters={(asideFilters) => handleAsideFilters(asideFilters)}
         categorysList={categorys.list}
         isLoading={loading}
-        setOrderButton={(data) => console.log("asidemenu data order", data)}
+        setOrderButton={(data) => handleSortOrderButtons(data)}
       />
       <div style={{ flex: 1 }}>
         <Header
@@ -73,23 +92,7 @@ export const FeedPage = () => {
           onHandleSearch={(value) =>
             setRequestParams({ ...requestParams, keyword: value })
           }
-          setOrderButton={(data) => {
-            if (data.id === 1) {
-              delete requestParams.sort_field;
-              delete requestParams.sort_order;
-              setRequestParams({
-                ...requestParams,
-                page: 1,
-              });
-            } else {
-              setRequestParams({
-                ...requestParams,
-                page: 1,
-                sort_order: data.order,
-                sort_field: data.value,
-              });
-            }
-          }}
+          setOrderButton={(data) => handleSortOrderButtons(data)}
         />
         <Feed
           mentions={mentionsList}

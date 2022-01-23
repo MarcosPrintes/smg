@@ -9,6 +9,12 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  > img {
+    max-width: 80%;
+    display: block;
+    margin-bottom: 3rem;
+  }
 `;
 
 export const Form = styled.form`

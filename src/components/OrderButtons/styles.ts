@@ -12,7 +12,9 @@ export const Container = styled.div`
   }
 `;
 
-export const OrderButton = styled.button`
+export const OrderButton = styled.button.attrs({
+  type: "button",
+})`
   border: 1px solid ${(props) => props.theme.colors.onBackground};
   color: ${(props) => props.theme.colors.onBackground};
   border-radius: 0.25rem;
