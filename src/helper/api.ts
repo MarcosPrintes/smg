@@ -3,9 +3,9 @@ import { LoginResponse, User } from "@/store/ducks/user/types";
 import axios, { AxiosRequestHeaders } from "axios";
 
 const API =
-  process.env.NODE_ENV === "development"
-    ? process.env.REACT_APP_API_DEV_URL
-    : process.env.REACT_APP_API_PROD_URL;
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_API_PROD_URL
+    : process.env.REACT_APP_API_DEV_URL;
 
 interface ConfigHeaderType extends AxiosRequestHeaders {
   "Content-Type": string;
