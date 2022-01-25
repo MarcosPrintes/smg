@@ -42,7 +42,6 @@ export const Login = () => {
   }
 
   useEffect(() => {
-    console.log(process.env);
     if (error) {
       toast.error("Email ou senha inválida");
       dispatch(actionLogout());
