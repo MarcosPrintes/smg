@@ -11,6 +11,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 import Logo from "@/assets/images/logo-color.png";
+import { register as apiRegister } from "@/helper/api";
 
 interface IFormInputs {
   name: string;
@@ -24,12 +25,12 @@ const registerFormSchema = yup.object().shape({
   email: yup.string().email("E-mail inválido").required("Email é obrigatório"),
   password: yup
     .string()
-    .min(6, "A senha deve conter no mínimo 6 caracteres")
+    .min(8, "A senha deve conter no mínimo 6 caracteres")
     .required("Senha é obrigatória"),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "As Senhas não conferem")
-    .required("Cofirmação de senha obrigatória"),
+    .required("Confirmação de senha obrigatória"),
 });
 
 export const Register = () => {
@@ -41,7 +42,18 @@ export const Register = () => {
     resolver: yupResolver(registerFormSchema),
   });
 
-  const onSubmit = (data: IFormInputs) => console.log(data);
+  const onSubmit = async ({ name, email, password }: IFormInputs) => {
+    try {
+      const response = await apiRegister({
+        name: name,
+        email: email,
+        password: password,
+      });
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
 
   return (
     <Container>
