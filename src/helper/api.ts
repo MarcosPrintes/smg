@@ -49,6 +49,12 @@ export const categorys = async (token: string) => {
   return response.data;
 };
 
+export const entities = async () => {
+  const response = await api.get("/api/v1/entities/?per_page=1000&page=1");
+
+  return response;
+};
+
 export const retrievePasswordEmail = async (email: string) => {
   const response = await api.post("api/password/email", { email });
 
@@ -59,7 +65,7 @@ export interface IRegister {
   name: string;
   password: string;
   email: string;
-  entity_id?: number;
+  entity_id?: string;
 }
 
 export const register = async (body: IRegister) => {
